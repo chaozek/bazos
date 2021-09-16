@@ -1,24 +1,26 @@
 import React, { useContext } from "react";
-import { data } from "../../data/SellSections";
 import styled from "styled-components";
 import { BazosContext } from "../../context/BazosState";
 import { Link } from "react-router-dom";
 export default function Cathegory(props) {
   const getId = props.match.params.slug;
+  const getSection = props.match.params.section;
   const { posts } = useContext(BazosContext);
-  const getData = data.find((p) => p.url === getId);
-  const getCathegory = (posts) => {
+  // const getData = data.find((p) => p.url === getId);
+  const section = posts[getId];
+  const getSectionData = section.filter((p) => p.kategorie === getSection);
+  console.log(getSectionData);
+  /* const getCathegory = (posts) => {
     const cathegory = posts[getId];
     if (cathegory === undefined) {
       return [{}];
     }
-    return cathegory;
-  };
-
+    return cathegory; 
+  };*/
   return (
     <div>
-      <H3>{getData.name}</H3>
-      {getCathegory(posts).map((cat, i) => (
+      <H3>{getSection}</H3>
+      {getSectionData.map((cat, i) => (
         <List key={i}>
           <LinkDiv to={`/kategorie/${getId}/${cat.kategorie}/${cat.id}`}>
             <H4>{cat.nadpis}</H4>

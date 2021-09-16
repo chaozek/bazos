@@ -37,11 +37,20 @@ const BazosState = (props) => {
             img: anonym,
             id: 3,
           },
+          {
+            nadpis: "Dogo",
+            kategorie: "psi",
+            text: "He poops dog coin",
+            cena: 43330,
+            psč: 62300,
+            img: anonym,
+            id: 8,
+          },
         ],
         auto: [
           {
             nadpis: "Náklaďák",
-            kategorie: "uzitkova-auta",
+            kategorie: "uzitkova",
             text: "Uveze vše",
             cena: 55500,
             psč: 55500,
@@ -50,7 +59,7 @@ const BazosState = (props) => {
           },
           {
             nadpis: "Hyundai I20",
-            kategorie: "osobni-auta",
+            kategorie: "osobni",
             text: "Také se divím, že funguje",
             cena: 555000,
             psč: 22400,

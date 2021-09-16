@@ -3,7 +3,7 @@ import React from "react";
 export default function MyPosts() {
   return (
     <>
-      <p>XXX</p>{" "}
+      <h1>My posts</h1>{" "}
     </>
   );
 }

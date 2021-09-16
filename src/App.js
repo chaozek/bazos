@@ -2,6 +2,7 @@ import { GlobalStyle } from "./globalStyles";
 import { HomeLayout, HomeRoute } from "./components/routesLayout/HomeRoute";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import HomePage from "./components/routes/HomePage";
+import Section from "./components/routesLayout/Section";
 import MyPosts from "./components/routes/MyPosts";
 import FavoritePosts from "./components/routes/FavoritePosts";
 import AddPost from "./components/routes/AddPost";
@@ -53,7 +54,13 @@ function App() {
             <ProductRoute
               exact
               layout={ProductLayout}
-              path="/kategorie/:slug/:id"
+              path="/kategorie/:slug/:section"
+              component={(props) => <Section {...props} />}
+            />
+            <ProductRoute
+              exact
+              layout={ProductLayout}
+              path="/kategorie/:slug/:section/:id"
               component={(props) => <SinglePost {...props} />}
             />
             <HomeRoute

@@ -3,9 +3,11 @@ import { BazosContext } from "../context/BazosState";
 
 import styled from "styled-components";
 import { animalData, carData, data, realityData } from "../data/SellSections";
+import { Link } from "react-router-dom";
 
 export default function SideBar(props) {
   const { setCateghory, categhory } = useContext(BazosContext);
+  console.log(categhory);
   const getId = props.match.params.slug;
   const getHugeId = props.match.url;
   const getCateghory = () => {
@@ -23,22 +25,27 @@ export default function SideBar(props) {
     getCateghory();
     // eslint-disable-next-line
   }, [props]);
-
+  const getSection = categhory.filter((p) => p.url);
+  console.log(getSection);
   return (
     <Side>
       <Head>Kategorie</Head>
       {categhory.length === 0
         ? data.map((data, i) =>
             data.url.length > 0 ? (
-              <ul key={i}>
-                <li key={i}>{data.name}</li>
-              </ul>
+              <Link>
+                <ul key={i}>
+                  <li key={i}>{data.name}</li>
+                </ul>
+              </Link>
             ) : null
           )
         : categhory.map((data, i) => (
-            <ul key={i}>
-              <li key={i}>{data.name}</li>
-            </ul>
+            <Link to={`/kategorie/${getId}/${data.url}`}>
+              <ul key={i}>
+                <li key={i}>{data.name}</li>
+              </ul>
+            </Link>
           ))}
     </Side>
   );

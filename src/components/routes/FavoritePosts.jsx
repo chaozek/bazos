@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function FavoritePosts() {
-  return <div>Favorite Posts</div>;
+  return <h1>Favorite Posts</h1>;
 }
