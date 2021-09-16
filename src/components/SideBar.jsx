@@ -1,10 +1,5 @@
-import React, {
-  useEffect,
-  useState,
-  useContext,
-  componentDidMount,
-} from "react";
-import BazosState, { BazosContext } from "../context/BazosState";
+import React, { useEffect, useContext } from "react";
+import { BazosContext } from "../context/BazosState";
 
 import styled from "styled-components";
 import { animalData, carData, data, realityData } from "../data/SellSections";
@@ -26,6 +21,7 @@ export default function SideBar(props) {
   };
   useEffect(() => {
     getCateghory();
+    // eslint-disable-next-line
   }, [props]);
 
   return (

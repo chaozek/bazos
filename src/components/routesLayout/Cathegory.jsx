@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { data } from "../../data/SellSections";
 import styled from "styled-components";
 import { BazosContext } from "../../context/BazosState";

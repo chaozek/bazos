@@ -1,6 +1,6 @@
 import { GlobalStyle } from "./globalStyles";
 import { HomeLayout, HomeRoute } from "./components/routesLayout/HomeRoute";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import HomePage from "./components/routes/HomePage";
 import MyPosts from "./components/routes/MyPosts";
 import FavoritePosts from "./components/routes/FavoritePosts";

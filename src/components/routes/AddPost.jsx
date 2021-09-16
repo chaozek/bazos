@@ -1,13 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
-import BazosState, { BazosContext } from "../../context/BazosState";
+import React, { useContext, useEffect } from "react";
+import { BazosContext } from "../../context/BazosState";
 import styled from "styled-components";
 import { data } from "../../data/SellSections";
 
 export default function AddPost(props) {
-  const { handleSubmit, handleChange, setNewPost, newPost } =
-    useContext(BazosContext);
-  const [state, setstate] = useState("");
-  const getId = props.match.url;
+  const { handleSubmit, handleChange, newPost } = useContext(BazosContext);
+  // const [state, setstate] = useState("");
+  // const getId = props.match.url;
 
   useEffect(() => {}, []);
   return (
