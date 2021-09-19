@@ -119,6 +119,7 @@ const BazosState = (props) => {
   const [categhory, setCateghory] = useState([]);
   const [currentCateghory, setCurrentCateghory] = useState("");
   const [order, setOrder] = useState("ASC");
+  const [searchTerm, setSearchTerm] = useState("");
   const sort = () => {
     try {
       if (order === "ASC") {
@@ -166,8 +167,8 @@ const BazosState = (props) => {
   };
   useEffect(() => {
     transformObj(newPost);
-    console.log()
-  }, [newPost]);
+    setSearchTerm("");
+  }, [newPost, setSearchTerm]);
 
   const transformObj = (post) => {
     const { cena, nadpis, kategorie, text, psč, id } = post;
@@ -190,6 +191,8 @@ const BazosState = (props) => {
         currentCateghory,
         setCurrentCateghory,
         sort,
+        searchTerm,
+        setSearchTerm,
       }}
     >
       {props.children}

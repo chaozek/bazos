@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { BazosContext } from "../../context/BazosState";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 export default function Cathegory(props) {
   const getId = props.match.params.slug;
   const getSection = props.match.params.section;
-  const { posts } = useContext(BazosContext);
+  const { posts, searchTerm, setSearchTerm } = useContext(BazosContext);
   // const getData = data.find((p) => p.url === getId);
   const section = posts[getId];
   const getSectionData = section.filter((p) => p.kategorie === getSection);
@@ -17,24 +18,39 @@ export default function Cathegory(props) {
     }
     return cathegory; 
   };*/
+  useEffect(() => {
+    setSearchTerm("");
+  }, [getSection, setSearchTerm]);
   return (
     <div>
       <H3>{getSection}</H3>
-      {getSectionData.map((cat, i) => (
-        <List key={i}>
-          <LinkDiv to={`/kategorie/${getId}/${cat.kategorie}/${cat.id}`}>
-            <H4>{cat.nadpis}</H4>
-          </LinkDiv>
-          <Left>
-            <Img src={cat.img} alt="" />
-            <p>{cat.text}</p>
-          </Left>
-          <Right>
-            <p>{cat.cena} Kč</p>
-            <p>{cat.psč}</p>
-          </Right>
-        </List>
-      ))}
+      {getSectionData
+        /* eslint-disable */
+        .filter((val) => {
+          if (searchTerm === "") {
+            return val;
+          } else if (
+            val.nadpis.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            val.text.toLowerCase().includes(searchTerm.toLowerCase())
+          ) {
+            return val;
+          }
+        })
+        .map((cat, i) => (
+          <List key={i}>
+            <LinkDiv to={`/kategorie/${getId}/${cat.kategorie}/${cat.id}`}>
+              <H4>{cat.nadpis}</H4>
+            </LinkDiv>
+            <Left>
+              <Img src={cat.img} alt="" />
+              <p>{cat.text}</p>
+            </Left>
+            <Right>
+              <p>{cat.cena} Kč</p>
+              <p>{cat.psč}</p>
+            </Right>
+          </List>
+        ))}
     </div>
   );
 }

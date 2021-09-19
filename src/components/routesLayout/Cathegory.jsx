@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { data } from "../../data/SellSections";
 import styled from "styled-components";
 import { BazosContext } from "../../context/BazosState";
 import { Link } from "react-router-dom";
 export default function Cathegory(props) {
   const getId = props.match.params.slug;
-  const { posts, setCurrentCateghory, sort } = useContext(BazosContext);
+  const { posts, setCurrentCateghory, sort, searchTerm, setSearchTerm } =
+    useContext(BazosContext);
   const getData = data.find((p) => p.url === getId);
   setCurrentCateghory(getId);
 
@@ -16,7 +17,9 @@ export default function Cathegory(props) {
       console.log(err);
     }
   };
-
+  useEffect(() => {
+    setSearchTerm("");
+  }, [getId, setSearchTerm]);
   return (
     <div>
       <H3>{getData.name}</H3>
@@ -29,23 +32,35 @@ export default function Cathegory(props) {
           <Text>Lokalita</Text>
         </Right>
       </Listing>
-      {getCathegory(posts).map((cat, i) => (
-        <List key={i}>
-          <LinkDiv to={`/kategorie/${getId}/${cat.kategorie}/${cat.id}`}>
-            <H4>{cat.nadpis}</H4>
-          </LinkDiv>
-          <Left>
-            <ImageLink to={`/kategorie/${getId}/${cat.kategorie}/${cat.id}`}>
-              <Img src={cat.img} alt="" />
-            </ImageLink>
-            <p>{cat.text}</p>
-          </Left>
-          <Right>
-            <p>{cat.cena} Kč</p>
-            <p>{cat.psč}</p>
-          </Right>
-        </List>
-      ))}
+      {getCathegory(posts)
+        /* eslint-disable */
+        .filter((val) => {
+          if (searchTerm === "") {
+            return val;
+          } else if (
+            val.nadpis.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            val.text.toLowerCase().includes(searchTerm.toLowerCase())
+          ) {
+            return val;
+          }
+        })
+        .map((cat, i) => (
+          <List key={i}>
+            <LinkDiv to={`/kategorie/${getId}/${cat.kategorie}/${cat.id}`}>
+              <H4>{cat.nadpis}</H4>
+            </LinkDiv>
+            <Left>
+              <ImageLink to={`/kategorie/${getId}/${cat.kategorie}/${cat.id}`}>
+                <Img src={cat.img} alt="" />
+              </ImageLink>
+              <p>{cat.text}</p>
+            </Left>
+            <Right>
+              <p>{cat.cena} Kč</p>
+              <p>{cat.psč}</p>
+            </Right>
+          </List>
+        ))}
     </div>
   );
 }

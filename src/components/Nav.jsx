@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
+import { BazosContext } from "../context/BazosState";
 export default function Nav() {
+  const { searchTerm, setSearchTerm } = useContext(BazosContext);
+
+  useEffect(() => {
+    console.log("F");
+  }, []);
   return (
     <Search>
       <form action="">
         Co:
-        <Input type="text" />
+        <Input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
         <Select>
           <option value="0">Všechny rubriky</option>
           <option value="2">Zvířata</option>
