@@ -1,15 +1,25 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { BazosContext } from "../context/BazosState";
+import { useHistory } from "react-router-dom";
+
 export default function Nav() {
   const { searchTerm, setSearchTerm } = useContext(BazosContext);
+  const history = useHistory();
 
+  const routeChange = (e) => {
+    history.push(`/kategorie/${e.target.value}`);
+    setSelect(e.target.value);
+    console.log();
+  };
   useEffect(() => {
-    console.log("F");
-  }, []);
+    setSelect("AHOJ");
+  }, [history]);
+  const [select, setSelect] = useState("");
+
   return (
     <Search>
-      <form action="">
+      <form action=""> 
         Co:
         <Input
           type="text"
@@ -18,17 +28,15 @@ export default function Nav() {
             setSearchTerm(e.target.value);
           }}
         />
-        <Select>
-          <option value="0">Všechny rubriky</option>
-          <option value="2">Zvířata</option>
-          <option value="3">Reality</option>
-          <option value="4">Auto</option>
+        <Select value={select} onChange={routeChange}>
+          <option value=""> Všechny rubriky</option>
+          <option value="zvirata">Zvířata</option>
+          <option value="reality">Reality</option>
+          <option value="auto">Auto</option>
         </Select>
         Lokalita:
         <Input width="50px" type="text" />
-        Okolí:
-        <Input width="30px" type="text" defaultValue="25" />
-        Cena: od:
+        Cena od:
         <Input width="50px" type="text" /> - do:
         <Input width="50px" /> Kč
         <Input type="button" value="hledat" />
