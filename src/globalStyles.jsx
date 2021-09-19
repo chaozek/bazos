@@ -6,8 +6,8 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box; 
-    font-family: Open-Sans, Helvetica, Sans-Serif;
-    font-size: .7rem;
+    font-family: Verdana, Open-Sans, Helvetica, Sans-Serif;
+    font-size: .75rem;
   }
   ul{
   list-style: none; 

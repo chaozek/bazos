@@ -16,6 +16,7 @@ export default function AddPost(props) {
         <form onSubmit={handleSubmit}>
           <P>Kategorie *</P>
           <select
+            type="select"
             value={newPost.kategorie}
             name="kategorie"
             required
@@ -23,7 +24,6 @@ export default function AddPost(props) {
               handleChange(e);
             }}
           >
-            
             {data.map((data, i) => (
               <option key={i} value={data.url} required>
                 {data.name}
@@ -35,9 +35,7 @@ export default function AddPost(props) {
             type="text"
             name="nadpis"
             value={newPost.nadpis}
-            onChange={(e) => {
-              handleChange(e);
-            }}
+            onChange={handleChange}
           />
           <P>Text </P>
           <textarea
@@ -50,7 +48,7 @@ export default function AddPost(props) {
           />
           <P>Cena v Kč </P>
           <input
-            type="text"
+            type="number"
             name="cena"
             value={newPost.cena}
             onChange={(e) => {
@@ -59,7 +57,7 @@ export default function AddPost(props) {
           />
           <P>PSČ</P>
           <input
-            type="text"
+            type="number"
             name="psč"
             value={newPost.psč}
             onChange={(e) => {

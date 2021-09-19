@@ -35,7 +35,9 @@ export default function Cathegory(props) {
             <H4>{cat.nadpis}</H4>
           </LinkDiv>
           <Left>
-            <Img src={cat.img} alt="" />
+            <ImageLink to={`/kategorie/${getId}/${cat.kategorie}/${cat.id}`}>
+              <Img src={cat.img} alt="" />
+            </ImageLink>
             <p>{cat.text}</p>
           </Left>
           <Right>
@@ -58,10 +60,14 @@ const LinkDiv = styled(Link)`
   width: 100%;
   text-decoration: underline;
 `;
+const ImageLink = styled(Link)`
+  text-decoration: underline;
+`;
 const List = styled.div`
   padding: 0.2rem 0.4rem;
   border-top: 1px solid rgb(221, 221, 221);
   display: flex;
+  padding-bottom: 2rem;
   flex-wrap: wrap;
   :hover {
     background-color: #fbf3e1;
@@ -79,6 +85,7 @@ const Listing = styled.div`
 
 const Left = styled.div`
   display: flex;
+  flex-direction: row;
   flex: 1;
 `;
 const Text = styled.p`
@@ -95,7 +102,8 @@ const FilterText = styled.p`
 `;
 const Img = styled.img`
   width: 100px;
-  min-width: 100px;
+  border: 1px solid black;
+  margin-right: 1rem;
 `;
 const Right = styled.div`
   display: flex;

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import anonym from "../imgs/anonym.png";
 import useLocalStorage from "./useLocalStorage.jsx";
@@ -143,6 +143,7 @@ const BazosState = (props) => {
       psč: "",
       img: anonym,
     });
+
     let cathegoryType = Object.keys(newTransPost)[0];
     const post1 = newTransPost[cathegoryType][0];
     setPosts((p) => {
@@ -152,18 +153,22 @@ const BazosState = (props) => {
       };
     });
   };
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     let value = e.target.value;
     let name = e.target.name;
-    setNewPost((p) => {
+    await setNewPost((p) => {
       return {
         ...p,
         [name]: value,
         id: uuidv4(),
       };
     });
-    transformObj(newPost);
   };
+  useEffect(() => {
+    transformObj(newPost);
+    console.log()
+  }, [newPost]);
+
   const transformObj = (post) => {
     const { cena, nadpis, kategorie, text, psč, id } = post;
     const newPost = {

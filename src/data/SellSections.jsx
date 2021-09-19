@@ -20,7 +20,7 @@ export const data = [
   },
   {
     url: "auto",
-    name: "Auto",
+    name: "Auta",
     img: auto,
   },
 ];
