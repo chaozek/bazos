@@ -117,6 +117,21 @@ const BazosState = (props) => {
     ],
   });
   const [categhory, setCateghory] = useState([]);
+  const [currentCateghory, setCurrentCateghory] = useState("");
+  const [order, setOrder] = useState("ASC");
+  const sort = () => {
+    try {
+      if (order === "ASC") {
+        posts[currentCateghory].sort((a, b) => (a.cena < b.cena ? 1 : -1));
+        setOrder("DSC");
+      } else if (order === "DSC") {
+        posts[currentCateghory].sort((a, b) => (a.cena > b.cena ? 1 : -1));
+        setOrder("ASC");
+      }
+    } catch {
+      console.log("error, nejde filtrovat");
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -131,7 +146,6 @@ const BazosState = (props) => {
     let cathegoryType = Object.keys(newTransPost)[0];
     const post1 = newTransPost[cathegoryType][0];
     setPosts((p) => {
-      console.log(p[cathegoryType]);
       return {
         ...p,
         [cathegoryType]: [...p[cathegoryType], post1],
@@ -168,6 +182,9 @@ const BazosState = (props) => {
         newPost,
         categhory,
         setCateghory,
+        currentCateghory,
+        setCurrentCateghory,
+        sort,
       }}
     >
       {props.children}

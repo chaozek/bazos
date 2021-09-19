@@ -9,7 +9,7 @@ export default function Cathegory(props) {
   // const getData = data.find((p) => p.url === getId);
   const section = posts[getId];
   const getSectionData = section.filter((p) => p.kategorie === getSection);
-  console.log(getSectionData);
+  // console.log(getSectionData);
   /* const getCathegory = (posts) => {
     const cathegory = posts[getId];
     if (cathegory === undefined) {

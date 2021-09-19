@@ -5,19 +5,30 @@ import { BazosContext } from "../../context/BazosState";
 import { Link } from "react-router-dom";
 export default function Cathegory(props) {
   const getId = props.match.params.slug;
-  const { posts } = useContext(BazosContext);
+  const { posts, setCurrentCateghory, sort } = useContext(BazosContext);
   const getData = data.find((p) => p.url === getId);
+  setCurrentCateghory(getId);
+
   const getCathegory = (posts) => {
-    const cathegory = posts[getId];
-    if (cathegory === undefined) {
-      return [{}];
+    try {
+      return posts[getId];
+    } catch (err) {
+      console.log(err);
     }
-    return cathegory;
   };
 
   return (
     <div>
       <H3>{getData.name}</H3>
+      <Listing>
+        <Left>
+          <Text>Název inzerátu</Text>
+        </Left>
+        <Right>
+          <FilterText onClick={sort}>Cena</FilterText>
+          <Text>Lokalita</Text>
+        </Right>
+      </Listing>
       {getCathegory(posts).map((cat, i) => (
         <List key={i}>
           <LinkDiv to={`/kategorie/${getId}/${cat.kategorie}/${cat.id}`}>
@@ -56,10 +67,31 @@ const List = styled.div`
     background-color: #fbf3e1;
   }
 `;
+const Listing = styled.div`
+  padding: 0.2rem 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffd9bf;
+  border-radius: 5px;
+  padding: 0.3rem 0.2 rem;
+  border: 1px solid #c7a995;
+`;
 
 const Left = styled.div`
   display: flex;
   flex: 1;
+`;
+const Text = styled.p`
+  margin: 0;
+`;
+const FilterText = styled.p`
+  margin: 0;
+  cursor: pointer;
+  :hover {
+    color: #ff6600;
+    font-weight: bold;
+    text-decoration: underline;
+  }
 `;
 const Img = styled.img`
   width: 100px;

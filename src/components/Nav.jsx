@@ -38,13 +38,11 @@ const Search = styled.div`
 
 const Input = styled.input`
   border-radius: 3px;
-  border: none;
   margin: 0rem 1rem;
   width: ${(props) => (props.width ? props.width : "auto")};
 `;
 const Select = styled.select`
   border-radius: 3px;
-  border: none;
   margin: 0rem 1rem;
   width: ${(props) => (props.width ? props.width : "auto")};
 `;
