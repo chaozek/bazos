@@ -44,8 +44,7 @@ export default function HomePage() {
             Adding choice in form to choose section of cathegory for correct
             listing
           </li>
-          <li>Adding image for item in the form</li>
-          <li>Dynamic sidebar component</li>
+          <li>Possibility to add image for item in the form</li>
           <li>Make filter/search bar | favorite posts | my posts working</li>
           <li>Use regex for new items</li>
         </ul>
