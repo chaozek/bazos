@@ -5,7 +5,7 @@ import auto from "../imgs/auto.png";
 export const data = [
   {
     url: "",
-    name: "none",
+    name: "Zvolte kategorii",
     img: zvirata,
   },
   {

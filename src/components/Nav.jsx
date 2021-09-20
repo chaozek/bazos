@@ -10,22 +10,35 @@ export default function Nav() {
   const routeChange = (e) => {
     history.push(`/kategorie/${e.target.value}`);
     setSelect(e.target.value);
-    console.log();
   };
   useEffect(() => {
     setSelect("AHOJ");
   }, [history]);
   const [select, setSelect] = useState("");
 
+  const redirect = () => {
+    if (
+      history.location.pathname.includes("kategorie") === false &&
+      !window.location.href.includes("search")
+    ) {
+      window.location.href = "/search";
+    }
+  };
+  const handleChange = (e) => {
+    redirect();
+    setSearchTerm(e.target.value);
+  };
   return (
     <Search>
-      <form action=""> 
+      <form action="">
         Co:
         <Input
+          autoFocus
           type="text"
           value={searchTerm}
+          onClick={(event) => redirect(event)}
           onChange={(e) => {
-            setSearchTerm(e.target.value);
+            handleChange(e);
           }}
         />
         <Select value={select} onChange={routeChange}>

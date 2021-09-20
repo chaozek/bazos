@@ -14,6 +14,7 @@ import {
   ProductRoute,
 } from "./components/routesLayout/ProductRoute";
 import SinglePost from "./components/routes/SinglePost";
+import Search from "./components/routes/Search";
 function App() {
   return (
     <>
@@ -50,6 +51,12 @@ function App() {
               layout={ProductLayout}
               path="/kategorie/:slug/"
               component={(props) => <Cathegory {...props} />}
+            />
+            <ProductRoute
+              exact
+              layout={ProductLayout}
+              path="/search"
+              component={(props) => <Search {...props} />}
             />
             <ProductRoute
               exact

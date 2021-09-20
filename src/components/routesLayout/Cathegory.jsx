@@ -64,21 +64,21 @@ export default function Cathegory(props) {
     </div>
   );
 }
-const H3 = styled.h3`
+export const H3 = styled.h3`
   text-align: center;
 `;
-const H4 = styled.h4`
+export const H4 = styled.h4`
   width: 100%;
   text-decoration: underline;
 `;
-const LinkDiv = styled(Link)`
+export const LinkDiv = styled(Link)`
   width: 100%;
   text-decoration: underline;
 `;
-const ImageLink = styled(Link)`
+export const ImageLink = styled(Link)`
   text-decoration: underline;
 `;
-const List = styled.div`
+export const List = styled.div`
   padding: 0.2rem 0.4rem;
   border-top: 1px solid rgb(221, 221, 221);
   display: flex;
@@ -88,7 +88,7 @@ const List = styled.div`
     background-color: #fbf3e1;
   }
 `;
-const Listing = styled.div`
+export const Listing = styled.div`
   padding: 0.2rem 0.4rem;
   display: flex;
   flex-wrap: wrap;
@@ -98,15 +98,15 @@ const Listing = styled.div`
   border: 1px solid #c7a995;
 `;
 
-const Left = styled.div`
+export const Left = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
 `;
-const Text = styled.p`
+export const Text = styled.p`
   margin: 0;
 `;
-const FilterText = styled.p`
+export const FilterText = styled.p`
   margin: 0;
   cursor: pointer;
   :hover {
@@ -115,12 +115,12 @@ const FilterText = styled.p`
     text-decoration: underline;
   }
 `;
-const Img = styled.img`
+export const Img = styled.img`
   width: 100px;
   border: 1px solid black;
   margin-right: 1rem;
 `;
-const Right = styled.div`
+export const Right = styled.div`
   display: flex;
   flex: 1;
   justify-content: space-around;

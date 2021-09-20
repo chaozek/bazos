@@ -4,11 +4,48 @@ import styled from "styled-components";
 import { data } from "../../data/SellSections";
 
 export default function AddPost(props) {
-  const { handleSubmit, handleChange, newPost } = useContext(BazosContext);
+  const {
+    handleSubmit,
+    handleChange,
+    newPost,
+    states,
+    setStates,
+    loading,
+    setLoading,
+  } = useContext(BazosContext);
   // const [state, setstate] = useState("");
   // const getId = props.match.url;
+  useEffect(() => {
+    if (states.length <= 0) {
+      getStates();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  useEffect(() => {}, []);
+  async function getStates() {
+    var headers = new Headers();
+    headers.append(
+      "X-CSCAPI-KEY",
+      "ZkU4Wk54ZXh5cFhXdEpkalp0VkpHY1ZYZzc0WVlpSFd5ZHVhQ0xxRw=="
+    );
+    var requestOptions = {
+      method: "GET",
+      headers: headers,
+      redirect: "follow",
+    };
+    try {
+      fetch(
+        "https://api.countrystatecity.in/v1/countries/CZ/states",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => result)
+        .then((result) => setStates(result), setLoading(false));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div>
       <OrangeBlock>
@@ -55,15 +92,32 @@ export default function AddPost(props) {
               handleChange(e);
             }}
           />
-          <P>PSČ</P>
-          <input
-            type="number"
+          <P>Město</P>
+          <select
+            required
+            type="select"
             name="psč"
             value={newPost.psč}
             onChange={(e) => {
               handleChange(e);
             }}
-          />
+          >
+            <option required value="Zvolte město">
+              Zvolte město
+            </option>
+            ;
+            {loading ? (
+              <option>...loading</option>
+            ) : (
+              states.map((state) => {
+                return (
+                  <option key={state.id}>
+                    {state.name}, {state.iso2}00
+                  </option>
+                );
+              })
+            )}
+          </select>
           <br />
           <input type="submit" value="Odeslat" />
         </form>

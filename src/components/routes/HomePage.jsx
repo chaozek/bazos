@@ -94,8 +94,14 @@ const Home = styled.div`
 `;
 const HomeDiv = styled.div`
   display: flex;
+  width: 33.33%;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
+  border-left: 1px dashed #bbbbbb;
+
+  &:nth-child(1) {
+    border-left: none;
+  }
 `;

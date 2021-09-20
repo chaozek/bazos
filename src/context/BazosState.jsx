@@ -2,8 +2,8 @@ import React, { createContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import anonym from "../imgs/anonym.png";
 import useLocalStorage from "./useLocalStorage.jsx";
-export const BazosContext = createContext();
 
+export const BazosContext = createContext();
 const BazosState = (props) => {
   const initialState = {
     loading: false,
@@ -117,9 +117,13 @@ const BazosState = (props) => {
     ],
   });
   const [categhory, setCateghory] = useState([]);
+  const [states, setStates] = useState([]);
   const [currentCateghory, setCurrentCateghory] = useState("");
   const [order, setOrder] = useState("ASC");
+  const [loading, setLoading] = useState(true);
+
   const [searchTerm, setSearchTerm] = useState("");
+  console.log(searchTerm);
   const sort = () => {
     try {
       if (order === "ASC") {
@@ -193,6 +197,10 @@ const BazosState = (props) => {
         sort,
         searchTerm,
         setSearchTerm,
+        states,
+        setStates,
+        loading,
+        setLoading,
       }}
     >
       {props.children}
