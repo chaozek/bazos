@@ -12,25 +12,31 @@ export default function SideBar(props) {
   const getCateghory = () => {
     if (getHugeId === "/pridat-inzerat") {
       setCateghory([]);
+    } else if (getId === "/search") {
+      setCateghory([]);
     } else if (getId === "zvirata") {
       setCateghory(animalData);
     } else if (getId === "auto") {
       setCateghory(carData);
     } else if (getId === "reality") {
       setCateghory(realityData);
+    } else if (getId === undefined) {
+      setCateghory([]);
     }
   };
   useEffect(() => {
     getCateghory();
     // eslint-disable-next-line
   }, [props]);
+
+  console.log(categhory);
   return (
     <Side>
       <Head>Kategorie</Head>
       {categhory.length === 0
         ? data.map((data, i) =>
             data.url.length > 0 ? (
-              <Link key={i}>
+              <Link key={i} to={`/kategorie/${data.url}`}>
                 <ul>
                   <li key={i}>{data.name}</li>
                 </ul>

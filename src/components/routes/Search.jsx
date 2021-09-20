@@ -30,15 +30,12 @@ export default function Search(props) {
         })
         .map((post, i) => (
           <List key={i}>
-            <LinkDiv
-              to={`/kategorie/${post.kategorie}/${post.kategorie}/${post.id}`}
-            >
+            {console.log(post)}
+            <LinkDiv to={`/kategorie/zvirata/${post.kategorie}/${post.id}`}>
               <H4>{post.nadpis}</H4>
             </LinkDiv>
             <Left>
-              <ImageLink
-                to={`/kategorie/${post.kategorie}/${post.kategorie}/${post.id}`}
-              >
+              <ImageLink to={`/kategorie/zvirata/${post.kategorie}/${post.id}`}>
                 <Img src={post.img} alt="" />
               </ImageLink>
               <p>{post.text}</p>
