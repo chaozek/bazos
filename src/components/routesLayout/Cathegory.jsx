@@ -51,7 +51,7 @@ export default function Cathegory(props) {
             </LinkDiv>
             <Left>
               <ImageLink to={`/kategorie/${getId}/${cat.kategorie}/${cat.id}`}>
-                <Img src={cat.img} alt="" />
+                <Img src={cat.img} alt="product" />
               </ImageLink>
               <p>{cat.text}</p>
             </Left>
