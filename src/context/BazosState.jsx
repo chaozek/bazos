@@ -123,7 +123,6 @@ const BazosState = (props) => {
   const [loading, setLoading] = useState(true);
 
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(searchTerm);
   const sort = () => {
     try {
       if (order === "ASC") {

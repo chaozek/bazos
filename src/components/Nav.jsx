@@ -6,22 +6,31 @@ import { useHistory } from "react-router-dom";
 export default function Nav() {
   const { searchTerm, setSearchTerm } = useContext(BazosContext);
   const history = useHistory();
-
+  const focus = React.useRef(null);
   const routeChange = (e) => {
     history.push(`/kategorie/${e.target.value}`);
     setSelect(e.target.value);
   };
   useEffect(() => {
-    setSelect("AHOJ");
-  }, [history]);
-  const [select, setSelect] = useState("");
+    handleFocus();
+  }, []);
 
+  const [select, setSelect] = useState("");
+  console.log(window.location.pathname);
   const redirect = () => {
     if (
       history.location.pathname.includes("kategorie") === false &&
       !window.location.href.includes("search")
     ) {
       window.location.href = "/search";
+    }
+  };
+  const handleFocus = () => {
+    if (window.location.pathname === "/") {
+      focus.current.focus();
+      console.log(focus.current);
+    } else if (window.location.pathname === "/search") {
+      focus.current.focus();
     }
   };
   const handleChange = (e) => {
@@ -33,7 +42,7 @@ export default function Nav() {
       <form action="">
         Co:
         <Input
-          autoFocus
+          ref={focus}
           type="text"
           value={searchTerm}
           onClick={(event) => redirect(event)}
@@ -52,7 +61,6 @@ export default function Nav() {
         Cena od:
         <Input width="50px" type="text" /> - do:
         <Input width="50px" /> Kč
-        <Input type="button" value="hledat" />
       </form>
     </Search>
   );
