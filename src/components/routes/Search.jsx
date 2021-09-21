@@ -30,7 +30,6 @@ export default function Search(props) {
         })
         .map((post, i) => (
           <List key={i}>
-            {console.log(post)}
             <LinkDiv to={`/kategorie/zvirata/${post.kategorie}/${post.id}`}>
               <H4>{post.nadpis}</H4>
             </LinkDiv>

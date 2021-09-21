@@ -3,13 +3,13 @@ import { data } from "../../data/SellSections";
 import styled from "styled-components";
 import { BazosContext } from "../../context/BazosState";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 export default function Cathegory(props) {
   const getId = props.match.params.slug;
   const { posts, setCurrentCateghory, sort, searchTerm, setSearchTerm } =
     useContext(BazosContext);
   const getData = data.find((p) => p.url === getId);
   setCurrentCateghory(getId);
-
   const getCathegory = (posts) => {
     try {
       return posts[getId];
@@ -20,6 +20,11 @@ export default function Cathegory(props) {
   useEffect(() => {
     setSearchTerm("");
   }, [getId, setSearchTerm]);
+  const [element, setElement] = useState(0);
+  useEffect(() => {
+    setElement(document.getElementsByClassName("fWfQbS").length);
+  }, [searchTerm]);
+  console.log(element);
   return (
     <div>
       <H3>{getData.name}</H3>
@@ -32,6 +37,7 @@ export default function Cathegory(props) {
           <Text>Lokalita</Text>
         </Right>
       </Listing>
+
       {getCathegory(posts)
         /* eslint-disable */
         .filter((val) => {
@@ -61,6 +67,7 @@ export default function Cathegory(props) {
             </Right>
           </List>
         ))}
+      {element === 0 ? <h4>NIC NENALEZENO</h4> : null}
     </div>
   );
 }

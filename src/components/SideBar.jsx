@@ -29,7 +29,6 @@ export default function SideBar(props) {
     // eslint-disable-next-line
   }, [props]);
 
-  console.log(categhory);
   return (
     <Side>
       <Head>Kategorie</Head>

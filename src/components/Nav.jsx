@@ -16,7 +16,6 @@ export default function Nav() {
   }, []);
 
   const [select, setSelect] = useState("");
-  console.log(window.location.pathname);
   const redirect = () => {
     if (
       history.location.pathname.includes("kategorie") === false &&
@@ -28,7 +27,6 @@ export default function Nav() {
   const handleFocus = () => {
     if (window.location.pathname === "/") {
       focus.current.focus();
-      console.log(focus.current);
     } else if (window.location.pathname === "/search") {
       focus.current.focus();
     }
